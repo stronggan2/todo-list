@@ -11,8 +11,23 @@ input {
   font-size: 15px;
   line-height: 25px;
   color: black;
-  flex:1;
+  flex: 1;
   &::placeholder {
     color: gray;
+  }
+}
+
+button {
+  background: none;
+  outline: none;
+  border: none;
+  color: black;
+  padding: 10px;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  &:hover {
+    background: pink;
   }
 }
