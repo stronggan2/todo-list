@@ -1,61 +1,61 @@
 import React, { useState, useRef } from "react";
-import TodoTemplate from "./TodoApp/components/TodoTemplate";
-import TodoInsert from "./TodoApp/components/TodoInsert";
-import TodoList from "./TodoApp/components/TodoList";
+import TodoTemplate2 from "./Todo-List-two/Components/TodoTemplate2";
+import TodoInsert2 from "./Todo-List-two/Components/TodoInsert2";
+import TodoList2 from "./Todo-List-two/Components/TodoList2";
 import "./App.css";
 
 const App = () => {
   const [todos, setTodos] = useState([
-    // {
-    //   id: 1,
-    //   text: "리액트 기초 공부하기",
-    //   status: true,
-    // },
-    // {
-    //   id: 2,
-    //   text: "포트폴리오 만들기",
-    //   status: true,
-    // },
-    // {
-    //   id: 3,
-    //   text: "프로젝트 준비하기",
-    //   status: false,
-    // },
+    {
+      id: 1,
+      text: "1분 자기소개 암기",
+      status: true,
+    },
+    {
+      id: 2,
+      text: "포트폴리오 만들기",
+      status: true,
+    },
+    {
+      id: 3,
+      text: "조별 프로젝트 질문 준비",
+      status: false,
+    },
   ]);
 
+  const nextId = useRef(4);
   const insertHandler = (item) => {
     const todo = {
       id: nextId.current,
       text: item,
-      status: false, // 체크 됐는지 안됐는지
+      status: false,
     };
-    setTodos([...todos, todo]); // 기존에 있던 todo 통으로 복사 + 새로 만든 객체
+
+    setTodos([...todos, todo]);
 
     nextId.current += 1;
   };
 
-  const nextId = useRef(1);
-  // 지금은 위에 3가지가 있으니까 4!
   const removeHandler = (deleted) =>
     setTodos(todos.filter((prevTodo) => prevTodo.id !== deleted));
 
   const updateHandler = (updated) =>
     setTodos(
-      todos.map((prevTodo) => (prevTodo.id === updated.id ? updated : prevTodo))
+      todos.map((prevTodo) =>
+        prevTodo.id === updateHandler.id ? updated : prevTodo
+      )
     );
-
   return (
     <div>
-      <TodoTemplate>
-        <TodoInsert insertItem={insertHandler} />
-        <TodoList
+      <TodoTemplate2>
+        <TodoInsert2 insertItem={insertHandler} />
+        <TodoList2
           todos={todos}
           removeItem={removeHandler}
           updateItem={updateHandler}
         />
-      </TodoTemplate>
+      </TodoTemplate2>
     </div>
   );
 };
-
 export default App;
